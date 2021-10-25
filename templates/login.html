@@ -7,7 +7,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>API COVID 19 | Login</title>
+  <title> Barrios Populares | Login</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="{% static 'vendors/ti-icons/css/themify-icons.css' %}" />
     <link rel="stylesheet" href="{% static 'vendors/base/vendor.bundle.base.css' %}" />
@@ -17,7 +17,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   <!-- endinject -->
-  <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+  <!-- <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" /> -->
 </head>
 
 <body>
@@ -28,20 +28,20 @@
           <div class="col-lg-6 d-flex align-items-center justify-content-center">
             <div class="auth-form-transparent text-left p-3">
               <div class="brand-logo">
-                <h2><i class="ti-world text-primary"></i>API COVID 19</h2>
+                <h2><i class="ti-world text-primary"></i> Barrios Populares</h2>
               </div>
               <h4>Iniciar Sesión</h4>
               <h6 class="font-weight-light">Bienvenido de nuevo!</h6>
               <form class="pt-3" action="/login/" method="POST"> {% csrf_token %}
                 <div class="form-group">
-                  <label for="exampleInputEmail">Email</label>
+                  <label for="exampleInputEmail">Usuario</label>
                   <div class="input-group">
                     <div class="input-group-prepend bg-transparent">
                       <span class="input-group-text bg-transparent border-right-0">
                         <i class="ti-user text-primary"></i>
                       </span>
                     </div>
-                    <input type="text" class="form-control form-control-lg border-left-0" id="exampleInputEmail" placeholder="Email" name="email">
+                    <input type="text" class="form-control form-control-lg border-left-0" id="exampleInputEmail" placeholder="Usuario" name="username">
                   </div>
                 </div>
                 <div class="form-group">
