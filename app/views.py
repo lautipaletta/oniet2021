@@ -229,7 +229,7 @@ def buscar_prov_localidad(request):
                 if localidad_exists:
                 
                     localidad = Localidad.objects.get(
-                        Q(nombre=request.POST['localidad'])
+                        Q(nombre=request.POST['localidad']) &
                         Q(provincia__nombre=request.POST['provincia'])
                     )
 
