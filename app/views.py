@@ -210,6 +210,81 @@ def agregar_paquetes(request, id):
 
     return render(request, 'barrio.html', {'barrio': barrio})
 
+def buscar_prov_localidad(request):
+    
+    if request.method == 'POST':
+
+        if request.POST.get('localidad') and request.POST.get('provincia'):
+            
+            provincia_exists = Provincia.objects.filter(
+                Q(nombre=request.POST['provincia'])
+            ).exists()       
+
+            localidad_exists = Localidad.objects.filter(
+                Q(nombre=request.POST['localidad']) &
+                Q(provincia__nombre=request.POST['provincia'])
+            ).exists()
+
+            if provincia_exists:
+                if localidad_exists:
+                
+                    localidad = Localidad.objects.get(
+                        Q(nombre=request.POST['localidad'])
+                        Q(provincia__nombre=request.POST['provincia'])
+                    )
+
+                    lista_barrios = localidad.barrios.all()
+
+                    barrios = []
+
+                    for barrio in lista_barrios:
+                        barrios.append({
+                            'id': barrio.id,
+                            'nombre': barrio.nombre,
+                            'cant_familias': barrio.cant_familias,
+                            'cant_paquetes': barrio.cant_paquetes,
+                            'localidad': barrio.localidad.all()[0].nombre,
+                            'provincia': barrio.localidad.all()[0].provincia.all()[0].nombre,
+                        })
+                
+                    return render(request, '.html', {'barrios': barrios})
+                else:
+                    return render(request, '.html', {'error': 'Localidad no encontrada.'})
+            else:
+                return render(request, '.html', {'error': 'Provincia no encontrada.'}) 
+        elif request.POST.get('provincia'):
+    
+            provincia_exists = Provincia.objects.filter(
+                Q(nombre=request.POST['provincia'])
+            ).exists()         
+
+            if provincia_exists:
+                lista_localidades = Localidad.objects.filter(
+                    provincia__nombre=request.POST['provincia'] 
+                ).all()
+
+                localidades_barrios = {}
+
+                for localidad in lista_localidades:
+                    lista_barrios = localidad.barrios.all()
+                    localidades_barrios[localidad.nombre] = []
+                    for barrio in lista_barrios:
+                        localidades_barrios[localidad.nombre].append({
+                            'id': barrio.id,
+                            'nombre': barrio.nombre,
+                            'cant_familias': barrio.cant_familias,
+                            'cant_paquetes': barrio.cant_paquetes,
+                            'localidad': barrio.localidad.all()[0].nombre,
+                            'provincia': barrio.localidad.all()[0].provincia.all()[0].nombre,
+                        })
+                        
+                return render(request, '.html', {'localidad_barrios': localidades_barrios})
+            else:
+                return render(request, '.html', {'error': 'Provincia no encontrada.'})
+
+        else:
+            return render(request, '.html', {'error': 'No hay informacion para realizar la busqueda.'})
+
 def login(request):
     
     if request.method == 'POST':
