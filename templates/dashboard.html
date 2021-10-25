@@ -7,76 +7,148 @@
 <div class="col-12 grid-margin stretch-card">
   <div class="card">
     <div class="card-body">
-      <p class="card-title text-md-center text-xl-left">INFORMACIÓN DEL USUARIO</p>
-      <br>
-      <div class="container-fluid">
-        <h2 class="text-left mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ user.first_name|upper }} {{ user.last_name|upper }}</h2>
-        <div class="row">
-          <div class="col">
-            <h4 class="text-secondary text-left mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ user.username }}</h4>
-            <h4 class="text-secondary text-left mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ user.email }}</h4>
-          </div>
-          <div class="col">
-            <h4 class="text-secondary text-left mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ user.country }}</h4>
-            <h4 class="text-secondary text-left mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ user.address }}</h4>
-          </div>
-          <div class="col"></div>
-          <div class="col"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="col-12 grid-margin stretch-card">
-  <div class="card">
-    <div class="card-body">
-      <p class="card-title text-md-center text-xl-left">INFORMACIÓN BÁSICA</p>
-      <br>
-      <h1 class="text-primary text-center mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0">{{ user.country|upper }}</h1> 
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <h3 class="text-center mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0"><strong>CONFIRMADOS: </strong> {{ country_data.TotalConfirmed }}</h3> 
-            <h3 class="text-center mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0"><strong>CASOS ACTIVOS: </strong> {{ last_days_data.0.Active }}</h3> 
-          </div>
-          <div class="col">
-            <h3 class="text-center mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0"><strong>MUERTES: </strong> {{ country_data.TotalDeaths }}</h3> 
-            <h3 class="text-center mb-0 mb-md-2 mb-xl-0 order-md-1 order-xl-0"><strong>RECUPERADOS: </strong> {{ country_data.TotalRecovered }}</h3> 
-          </div>
-        </div>
-      </div>
-      
-      
-
-    </div>
-  </div>
-</div>
-<div class="col-12 grid-margin stretch-card">
-  <div class="card">
-    <div class="card-body">
-      <h4 class="card-title text-md-center text-xl-left">Últimos 10 días</h4>
+      <h4 class="card-title text-md-center text-xl-left">BARRIOS</h4>
       <p class="card-description">
-        {{ user.country|upper }} - {{ country_data.Date|slice:':10' }} {{ country_data.Date|slice:'11:16' }}
+        Puede filtrar por Localidad y Provincia:
       </p>
+      <form class="forms-sample">
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Localidad">
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Provincia">
+            </div>
+          </div>
+          <div class="col">
+            <button type="submit" class="btn btn-primary mr-2">Filtrar</button>
+          </div>
+        </div>
+      </form>
       <div class="table-responsive">
         <table class="table">
           <thead>
             <tr>
-              <th>Fecha</th>
-              <th>Nuevos Casos</th>
-              <th>Muertes</th>
+              <th>Barrio</th>
+              <th>Familias Estimadas</th>
+              <th>Paquetes</th>
+              <th>Localidad</th>
+              <th>Provincia</th>
+              <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
-            
-            {% for day in last_days_data %}
-              <tr>
-                <td>{{ day.Date|slice:':10' }}</td>
-                <td>{{ day.Confirmed }}</td>
-                <td>{{ day.Deaths }}</td>
-              </tr>
-            {% endfor %}
-              
+            <tr>
+              <td>Casaca</td>
+              <td>20</td>
+              <td>45</td>
+              <td>La Plata</td>
+              <td>Buenos Aires</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-icon btn-rounded">
+                  <i class="ti-more-alt btn-icon-prepend"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Casaca</td>
+              <td>20</td>
+              <td>45</td>
+              <td>La Plata</td>
+              <td>Buenos Aires</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-icon btn-rounded">
+                  <i class="ti-info-alt btn-icon-prepend"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Casaca</td>
+              <td>20</td>
+              <td>45</td>
+              <td>La Plata</td>
+              <td>Buenos Aires</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-icon btn-rounded">
+                  <i class="ti-info-alt btn-icon-prepend"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Casaca</td>
+              <td>20</td>
+              <td>45</td>
+              <td>La Plata</td>
+              <td>Buenos Aires</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-icon btn-rounded">
+                  <i class="ti-info-alt btn-icon-prepend"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Casaca</td>
+              <td>20</td>
+              <td>45</td>
+              <td>La Plata</td>
+              <td>Buenos Aires</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-icon btn-rounded">
+                  <i class="ti-info-alt btn-icon-prepend"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Casaca</td>
+              <td>20</td>
+              <td>45</td>
+              <td>La Plata</td>
+              <td>Buenos Aires</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-icon btn-rounded">
+                  <i class="ti-info-alt btn-icon-prepend"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Casaca</td>
+              <td>20</td>
+              <td>45</td>
+              <td>La Plata</td>
+              <td>Buenos Aires</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-icon btn-rounded">
+                  <i class="ti-info-alt btn-icon-prepend"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Casaca</td>
+              <td>20</td>
+              <td>45</td>
+              <td>La Plata</td>
+              <td>Buenos Aires</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-icon btn-rounded">
+                  <i class="ti-info-alt btn-icon-prepend"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td>Casaca</td>
+              <td>20</td>
+              <td>45</td>
+              <td>La Plata</td>
+              <td>Buenos Aires</td>
+              <td>
+                <button type="button" class="btn btn-primary btn-icon btn-rounded">
+                  <i class="ti-info-alt btn-icon-prepend"></i>
+                </button>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
