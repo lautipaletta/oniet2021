@@ -24,77 +24,17 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><center>La Plata</center></td>
-              <td><center>420</center></td>
-              <td><center>600</center></td>
-              <td><center>1,42</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>La Plata</center></td>
-              <td><center>420</center></td>
-              <td><center>600</center></td>
-              <td><center>1,42</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>La Plata</center></td>
-              <td><center>420</center></td>
-              <td><center>600</center></td>
-              <td><center>1,42</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>La Plata</center></td>
-              <td><center>420</center></td>
-              <td><center>600</center></td>
-              <td><center>1,42</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>La Plata</center></td>
-              <td><center>420</center></td>
-              <td><center>600</center></td>
-              <td><center>1,42</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>La Plata</center></td>
-              <td><center>420</center></td>
-              <td><center>600</center></td>
-              <td><center>1,42</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>La Plata</center></td>
-              <td><center>420</center></td>
-              <td><center>600</center></td>
-              <td><center>1,42</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>La Plata</center></td>
-              <td><center>420</center></td>
-              <td><center>600</center></td>
-              <td><center>1,42</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>La Plata</center></td>
-              <td><center>420</center></td>
-              <td><center>600</center></td>
-              <td><center>1,42</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>La Plata</center></td>
-              <td><center>420</center></td>
-              <td><center>600</center></td>
-              <td><center>1,42</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
             
+            
+            {% for localidad in localidades %}
+              <tr>
+                <td><center>{{ localidad.nombre }}</center></td>
+                <td><center>{{ localidad.familias }}</center></td>
+                <td><center>{{ localidad.paquetes }}</center></td>
+                <td><center>{{ localidad.p4f }}</center></td>
+                <td><center>{{ localidad.provincia }}</center></td>
+              </tr>
+            {% endfor %}
 
           </tbody>
         </table>

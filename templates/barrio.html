@@ -14,8 +14,8 @@
       <div class="container">
         <div class="row">
           <div class="col">
-            <h1 class="text-primary text-xl-left">BARRIO</h1>
-            <h4 class="text text-left">Localidad, Provincia</h4>
+            <h1 class="text-primary text-xl-left">{{ barrio.nombre }}</h1>
+            <h4 class="text text-left">{{ barrio.localidad }}, {{ barrio.provincia }}</h4>
             <h4 class="text text-left"></h4>
           </div>
         </div>
@@ -23,17 +23,15 @@
         <div class="row">
           <div class="col">
             
-            <h3 class="text-primary text-xl-left">Cloaca: <span class="text-dark font-weight-normal">Desagüe sólo a pozo negro\/ciego u hoyo.</span></h3>
-            <h3 class="text-primary text-xl-left">Electricidad: <span class="text-dark font-weight-normal">Conexión irregular a la red pública.</span></h3>
-            <h3 class="text-primary text-xl-left">Agua: <span class="text-dark font-weight-normal">Sin conexión formal al agua corriente de red pública (RPPVAP).</span></h3>
+            <h3 class="text-primary text-xl-left">Electricidad: <span class="text-dark font-weight-normal">{{ barrio.electricidad }}</span></h3>
+            <h3 class="text-primary text-xl-left">Cloaca: <span class="text-dark font-weight-normal">{{ barrio.cloacas }}</span></h3>
+            <h3 class="text-primary text-xl-left">Agua: <span class="text-dark font-weight-normal">{{ barrio.agua }}</span></h3>
             <br>
-            <h3 class="text-primary text-xl-left">Cantidad de Paquetas: <span class="text-dark">43</span></h3>
-            
-
+            <h3 class="text-primary text-xl-left">Cantidad de Paquetas: <span class="text-dark">{{ barrio.cant_paquetes }}</span></h3>
           </div>
         </div>
         <br>
-        <form class="forms-sample" action="/agregar_paquetes/">
+        <form class="forms-sample" action="/agregar_paquetes/{{ barrio.id }}/" method="POST"> {% csrf_token %}
           <div class="row">
             <div class="col">
               <div class="form-group">
@@ -48,8 +46,6 @@
           </div>
         </form>
       </div>
-      
-      
     </div>
   </div>
 </div>
