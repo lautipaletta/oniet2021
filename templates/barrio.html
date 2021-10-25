@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title text-md-center text-xl-left">ACCESOS</h4>
+      <p class="card-description">
+        Descripción general del barrio.
+      </p>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1 class="text-primary text-xl-left">BARRIO</h1>
+            <h4 class="text text-left">Localidad, Provincia</h4>
+            <h4 class="text text-left"></h4>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col">
+            
+            <h3 class="text-primary text-xl-left">Cloaca: <span class="text-dark font-weight-normal">Desagüe sólo a pozo negro\/ciego u hoyo.</span></h3>
+            <h3 class="text-primary text-xl-left">Electricidad: <span class="text-dark font-weight-normal">Conexión irregular a la red pública.</span></h3>
+            <h3 class="text-primary text-xl-left">Agua: <span class="text-dark font-weight-normal">Sin conexión formal al agua corriente de red pública (RPPVAP).</span></h3>
+            <br>
+            <h3 class="text-primary text-xl-left">Cantidad de Paquetas: <span class="text-dark">43</span></h3>
+            
+
+          </div>
+        </div>
+        <br>
+        <form class="forms-sample" action="/agregar_paquetes/">
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <input type="text" name="cantidad_paquetes" class="form-control" id="exampleInputUsername1" placeholder="Cantidad">
+              </div>
+            </div>
+            <div class="col">
+              <button type="submit" class="btn btn-success mr-2">AGREGAR</button>
+            </div>
+            <div class="col"></div>
+            <div class="col"></div>
+          </div>
+        </form>
+      </div>
+      
+      
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+          
+
+
