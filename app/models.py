@@ -12,11 +12,24 @@ class Provincia(models.Model):
 class Localidad(models.Model):
     nombre = models.CharField('Nombre', max_length=50, null=False, blank=False)
     barrios = models.ManyToManyField('Barrio', null=False, blank=False, related_name='localidad')
-    cant_paquetes =  models.IntegerField('Cantidad Barrios', null=False, blank=False, default=0)
 
     @property
     def cant_barrios(self):
         return len(self.barrios.all())
+
+    @property
+    def cant_paquetes(self):
+        cant = 0
+        for barrio in self.barrios.all():
+            cant += barrio.cant_paquetes
+        return cant
+
+    @property
+    def cant_familias(self):
+        cant = 0
+        for barrio in self.barrios.all():
+            cant += barrio.cant_familias
+        return cant
 
     def __str__(self):
         return self.nombre
@@ -32,6 +45,10 @@ class Barrio(models.Model):
     def incrementar_paquetes(self, cantidad):
         self.cant_paquetes += cantidad
         self.save()
+
+    @property
+    def ratio(self):    
+        return "{:.2f}".format(self.cant_paquetes / self.cant_familias)
 
     def __str__(self):
         return self.nombre

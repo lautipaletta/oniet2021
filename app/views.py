@@ -10,8 +10,7 @@ import json
 
 # Create your views here.
 
-@login_required(login_url='/login/')
-def index(request):
+def cargar_barrios():
 
     # for barrio in Barrio.objects.all():
     #     barrio.delete()
@@ -97,19 +96,119 @@ def index(request):
         # except ObjectDoesNotExist:
         #     Localidad.objects.get(nombre=localidad).barrios.add(Barrio.objects.get(nombre=barrio))
 
-    return HttpResponse('Done')
+@login_required(login_url='/login/')
+def index(request):
+
+    lista_barrios = Barrio.objects.all()
+
+    barrios = []
+
+    for i in lista_barrios:
+        barrios.append(
+            {
+                'id': i.id,
+                'nombre': i.nombre,
+                'cant_familias': i.cant_familias,
+                'cant_paquetes': i.cant_paquetes,
+                'localidad': i.localidad.all()[0].nombre,
+                'provincia': i.localidad.all()[0].provincia.all()[0].nombre,
+            }
+        )
+
+    print(barrios[0])
+
+    return render(request, 'dashboard.html', {'barrios': barrios})
+
+def localidades(request):
+
+    localidades_obj = Localidad.objects.all()
+
+    localidades = []
+
+    for localidad in localidades_obj:
+
+        cant_familias = localidad.cant_familias
+        cant_paquetes = localidad.cant_paquetes
+
+        localidades.append(
+            {
+                'nombre': localidad.nombre,
+                'familias': cant_familias,
+                'paquetes': cant_paquetes,
+                'p4f': "{:.2f}".format(cant_paquetes / cant_familias),
+                'provincia': localidad.provincia.all()[0].nombre
+            }
+        )
+
+    return render(request, 'localidades.html', {'localidades': localidades})
+
+def barrios_graves(request):
+
+    if request.method == 'POST':
+
+        cantidad = int(request.POST['cantidad'])
+
+        lista_barrios = sorted(Barrio.objects.all(), key=lambda t: t.ratio)
+
+        barrios = []
+
+        for barrio in lista_barrios[0:cantidad]:
+            barrios.append(
+                {
+                    'id': barrio.id,
+                    'nombre': barrio.nombre,
+                    'cant_familias': barrio.cant_familias,
+                    'cant_paquetes': barrio.cant_paquetes,
+                    'p4f': barrio.ratio,
+                    'localidad': barrio.localidad.all()[0].nombre,
+                    'provincia': barrio.localidad.all()[0].provincia.all()[0].nombre,
+                }
+        )
+
+        return render(request, 'barrios_graves.html', {'barrios': barrios})
+        
+    else:
+        return render(request, 'barrios_graves.html', {})
+
+def barrio(request, id):
+
+    barrio_obj = Barrio.objects.get(pk=id)
+
+    barrio = {
+        'id': barrio_obj.id,
+        'nombre': barrio_obj.nombre,
+        'cant_familias': barrio_obj.cant_familias,
+        'cant_paquetes': barrio_obj.cant_paquetes,
+        'localidad': barrio_obj.localidad.all()[0].nombre,
+        'provincia': barrio_obj.localidad.all()[0].provincia.all()[0].nombre,
+        'electricidad': barrio_obj.acceso_electricidad,
+        'cloacas': barrio_obj.acceso_cloaca,
+        'agua': barrio_obj.acceso_agua,
+    }
+
+    return render(request, 'barrio.html', {'barrio': barrio})
 
 def agregar_paquetes(request, id):
 
     cantidad_paquetes = int(request.POST['cantidad_paquetes'])
 
-    barrio = Barrio.objects.get(pk=id)
+    barrio_obj = Barrio.objects.get(pk=id)
 
-    barrio.incrementar_paquetes(cantidad_paquetes)
+    barrio_obj.incrementar_paquetes(cantidad_paquetes)
 
-    return render(request, 'barrio.html', {})
+    barrio = {
+        'id': barrio_obj.id,
+        'nombre': barrio_obj.nombre,
+        'cant_familias': barrio_obj.cant_familias,
+        'cant_paquetes': barrio_obj.cant_paquetes,
+        'localidad': barrio_obj.localidad.all()[0].nombre,
+        'provincia': barrio_obj.localidad.all()[0].provincia.all()[0].nombre,
+        'electricidad': barrio_obj.acceso_electricidad,
+        'cloacas': barrio_obj.acceso_cloaca,
+        'agua': barrio_obj.acceso_agua,
+    }
 
-
+    return render(request, 'barrio.html', {'barrio': barrio})
 
 def login(request):
     

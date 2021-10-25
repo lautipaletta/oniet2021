@@ -42,119 +42,26 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-              <td>
-                <center>
-                  <button type="button" class="btn btn-primary btn-icon btn-rounded">
-                    <i class="ti-more-alt btn-icon-prepend"></i>
-                  </button>
-                </center>
-              </td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-              <td>
-                <center>
-                  <button type="button" class="btn btn-primary btn-icon btn-rounded">
-                    <i class="ti-more-alt btn-icon-prepend"></i>
-                  </button>
-                </center>
-              </td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-              <td>
-                <center>
-                  <button type="button" class="btn btn-primary btn-icon btn-rounded">
-                    <i class="ti-more-alt btn-icon-prepend"></i>
-                  </button>
-                </center>
-              </td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-              <td>
-                <center>
-                  <button type="button" class="btn btn-primary btn-icon btn-rounded">
-                    <i class="ti-more-alt btn-icon-prepend"></i>
-                  </button>
-                </center>
-              </td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-              <td>
-                <center>
-                  <button type="button" class="btn btn-primary btn-icon btn-rounded">
-                    <i class="ti-more-alt btn-icon-prepend"></i>
-                  </button>
-                </center>
-              </td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-              <td>
-                <center>
-                  <button type="button" class="btn btn-primary btn-icon btn-rounded">
-                    <i class="ti-more-alt btn-icon-prepend"></i>
-                  </button>
-                </center>
-              </td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-              <td>
-                <center>
-                  <button type="button" class="btn btn-primary btn-icon btn-rounded">
-                    <i class="ti-more-alt btn-icon-prepend"></i>
-                  </button>
-                </center>
-              </td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-              <td>
-                <center>
-                  <button type="button" class="btn btn-primary btn-icon btn-rounded">
-                    <i class="ti-more-alt btn-icon-prepend"></i>
-                  </button>
-                </center>
-              </td>
-            </tr>
-
+            
+            {% for barrio in barrios %}
+              <tr>
+                <td><center>{{ barrio.nombre }}</center></td>
+                <td><center>{{ barrio.cant_familias }}</center></td>
+                <td><center>{{ barrio.cant_paquetes }}</center></td>                
+                <td><center>{{ barrio.localidad }}</center></td>
+                <td><center>{{ barrio.provincia }}</center></td>
+                <td>
+                  <center>
+                    <a href="/barrio/{{ barrio.id }}">
+                      <button type="button" class="btn btn-primary btn-icon btn-rounded">
+                        <i class="ti-more-alt btn-icon-prepend"></i>
+                      </button>
+                    </a>
+                  </center>
+                </td>
+              </tr>
+            {% endfor %}
+              
           </tbody>
         </table>
       </div>
