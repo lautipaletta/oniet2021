@@ -11,11 +11,11 @@
       <p class="card-description">
         Seleccione la cantidad de los barrios más necesitados:
       </p>
-      <form class="forms-sample">
+      <form class="forms-sample" action="/barrios_graves/" method="POST"> {% csrf_token %}
         <div class="row">
           <div class="col">
             <div class="form-group">
-              <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Cantidad">
+              <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Cantidad" name="cantidad">
             </div>
           </div>
           <div class="col">
@@ -38,70 +38,20 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>2,5</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>2,5</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>2,5</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>2,5</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>2,5</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>2,5</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>2,5</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
-            <tr>
-              <td><center>Casaca</center></td>
-              <td><center>20</center></td>
-              <td><center>45</center></td>
-              <td><center>2,5</center></td>
-              <td><center>La Plata</center></td>
-              <td><center>Buenos Aires</center></td>
-            </tr>
+            
+            
+            {% for barrio in barrios %}
+              <tr>
+                <td><center>{{ barrio.nombre }}</center></td>
+                  <td><center>{{ barrio.cant_familias }}</center></td>
+                  <td><center>{{ barrio.cant_paquetes }}</center></td>                
+                  <td><center>{{ barrio.p4f }}</center></td>                
+                  <td><center>{{ barrio.localidad }}</center></td>
+                  <td><center>{{ barrio.provincia }}</center></td>
+              </tr>
+            {% endfor %}
+              
+
           </tbody>
         </table>
       </div>
